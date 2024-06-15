@@ -1,33 +1,27 @@
+import { SetStateAction, useState } from 'react';
 import './App.css'
-import { Button } from './components/Button';
-import { Greet } from './components/Greet';
-import { Heading } from './components/Heading';
-import { Input } from './components/Input';
-import { Oscar } from './components/Oscar';
-import { Status } from './components/Status';
+import { Button } from './components/props/Button';
+import { Greet } from './components/props/Greet';
+import { Heading } from './components/props/Heading';
+import { Input } from './components/props/Input';
+import { Oscar } from './components/props/Oscar';
+import { Status } from './components/props/Status';
+import { Container } from './components/props/Container';
+import { ThemeContextProvider } from './components/context/themeContext';
+import Box from './components/context/Box';
 
 const App = () =>  {
 
-  const personName = {
-    first: "chandrashekar",
-    last: "kalal"
+  const [value, setValue] = useState('');
+
+  
+
+  const handleChange = (event: { target: { value: SetStateAction<string>; }; }) => {
+    setValue(event.target.value)
+
+    console.log('RES', event.target.value);
+
   }
-
-  const listNames = [
-    {
-      first: "chandrashekar",
-      last: "kalal"
-    },
-    {
-      first: "chandrakanth",
-      last: "kalal"
-    },
-    {
-      first: "nandini",
-      last: "kalal"
-    }
-  ]
-
   return (
     <>
       <h1>A TypeScript Application </h1>
@@ -40,7 +34,12 @@ const App = () =>  {
       <Button handleClick={(event, id) => {
         console.log('Button Clicked', event, id)
       }} />
-      <Input value='' handleChange={(event) => console.log(event)} />
+      <Input value={value} handleChange={handleChange} />
+      <Container styles={{border: "1px solid balck", padding: "1rem"}} />
+
+      <ThemeContextProvider>
+        <Box />
+      </ThemeContextProvider>
     </>
   )
 }
