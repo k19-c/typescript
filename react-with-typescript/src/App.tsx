@@ -9,6 +9,8 @@ import { Status } from './components/props/Status';
 import { Container } from './components/props/Container';
 import { ThemeContextProvider } from './components/context/themeContext';
 import Box from './components/context/Box';
+import { UserContextProvider } from './components/context/UserContext';
+import { User } from './components/context/User';
 
 const App = () =>  {
 
@@ -40,6 +42,10 @@ const App = () =>  {
       <ThemeContextProvider>
         <Box />
       </ThemeContextProvider>
+
+      <UserContextProvider>
+        <User />
+      </UserContextProvider>
     </>
   )
 }
